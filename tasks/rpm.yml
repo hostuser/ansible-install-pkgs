@@ -2,6 +2,7 @@
 # install rpm packages
 
 - name: install rpm package
+  become: yes
   yum: name="{{ item }}" state="{{ freckles_pkg_state }}"
   with_items:
     - "{{ freckles_pkgs['rpm'] | default(freckles_pkgs['default']) }}"
