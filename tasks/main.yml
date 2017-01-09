@@ -9,13 +9,13 @@
     # - "{{ freckles_pkgs }}"
 
 - name: Current application
-  debug: var=freckles_app_name
+  debug: var=app_name
 
 - include: deb.yml
-  when: (freckles_pkg_mgr is defined and freckles_pkg_mgr == 'deb') or (freckles_pkg_mgr is not defined and ansible_os_family == "Debian")
+  when: (pkg_mgr is defined and pkg_mgr == 'deb') or (pkg_mgr is not defined and ansible_os_family == "Debian")
 
 - include: rpm.yml
-  when: (freckles_pkg_mgr is defined and freckles_pkg_mgr == 'rpm') or (freckles_pkg_mgr is not defined and ansible_os_family == "RedHat")
+  when: (pkg_mgr is defined and pkg_mgr == 'rpm') or (pkg_mgr is not defined and ansible_os_family == "RedHat")
 
 - include: nix.yml
-  when: freckles_pkg_mgr is defined and freckles_pkg_mgr == 'nix'
+  when: pkg_mgr is defined and pkg_mgr == 'nix'

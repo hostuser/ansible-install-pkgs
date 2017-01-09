@@ -2,6 +2,6 @@
 # install nix packages
 - name: install nix package
   become: no
-  nix: name="{{ item }}" state="{{ freckles_pkg_state }}"
+  nix: name="{{ item }}" state="{{ pkg_state }}"
   with_items:
-    - "{{ freckles_pkgs['nix'] | default(freckles_pkgs['default']) }}"
+    - "{{ pkgs['nix'] | default(pkgs['default']) }}"

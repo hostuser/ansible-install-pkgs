@@ -3,6 +3,6 @@
 
 - name: install deb package
   become: yes
-  apt: name="{{ item }}" state="{{ freckles_pkg_state }}"
+  apt: name="{{ item }}" state="{{ pkg_state }}"
   with_items:
-    - "{{ freckles_pkgs['deb'] | default(freckles_pkgs['default']) }}"
+    - "{{ pkgs['deb'] | default(pkgs['default']) }}"

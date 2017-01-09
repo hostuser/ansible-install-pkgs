@@ -3,6 +3,6 @@
 
 - name: install rpm package
   become: yes
-  yum: name="{{ item }}" state="{{ freckles_pkg_state }}"
+  yum: name="{{ item }}" state="{{ pkg_state }}"
   with_items:
-    - "{{ freckles_pkgs['rpm'] | default(freckles_pkgs['default']) }}"
+    - "{{ pkgs['rpm'] | default(pkgs['default']) }}"
