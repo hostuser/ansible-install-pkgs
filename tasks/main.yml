@@ -8,8 +8,8 @@
   # with_items:
     # - "{{ freckles_pkgs }}"
 
-- name: Current application
-  debug: var=app_name
+# - name: Current application
+  # debug: var=app_name
 
 - include: deb.yml
   when: (pkg_mgr is defined and pkg_mgr == 'deb') or (pkg_mgr is not defined and ansible_os_family == "Debian")
