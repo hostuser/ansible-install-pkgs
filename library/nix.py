@@ -32,6 +32,15 @@ def query_package(module, name, state="present"):
 def install_packages(module, packages):
     install_c = 0
 
+    if module.check_mode:
+        for i, package in enumerate(packages):
+            if query_package(module, package):
+                continue
+            else:
+                module.exit_json(changed=True, name=package)
+
+        module.exit_json(changed=False, name=packages)
+
     for i, package in enumerate(packages):
         if query_package(module, package):
             continue
