@@ -45,7 +45,7 @@ def install_packages(module, packages):
         if query_package(module, package):
             continue
 
-        cmd = "{} -i {}".format(NIX_PATH,  package)
+        cmd = "{} -i {}".format(NIX_PATH, package)
         rc, stdout, stderr = module.run_command(cmd, check_rc=False)
 
         if rc != 0:
