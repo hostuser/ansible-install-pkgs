@@ -5,3 +5,4 @@
   nix: name="{{ item }}" state="{{ pkg_state }}"
   with_items:
     - "{{ pkgs['nix'] | default(pkgs['default']) }}"
+  ignore_errors: "{{ ignore_errors | default('yes') }}"
