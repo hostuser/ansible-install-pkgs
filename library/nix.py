@@ -21,7 +21,7 @@ NIX_PATH = os.environ['HOME'] + "/.nix-profile/bin/nix-env"
 
 def query_package(module, name, state="present"):
     if state == "present":
-        cmd = "nix-env -q %s" % (name)
+        cmd = "{} -q {}".format(NIX_PATH, name)
         rc, stdout, stderr = module.run_command(cmd, check_rc=False)
 
         if rc == 0:
@@ -45,7 +45,7 @@ def install_packages(module, packages):
         if query_package(module, package):
             continue
 
-        cmd = "nix-env -i %s" % package
+        cmd = "{} -i {}".format(NIX_PATH,  package)
         rc, stdout, stderr = module.run_command(cmd, check_rc=False)
 
         if rc != 0:
