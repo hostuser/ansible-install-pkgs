@@ -2,12 +2,12 @@
 
 - name: update nix package cache
   become: no
-  nix: update_cache = "{{ update_cache }}"
+  nix: update_cache=yes
   when: install_action == "update_cache"
 
 - name: upgrade nix packages
   become: no
-  nix: upgrade = "{{ upgrade }}"
+  nix: upgrade=yes
   when: install_action == "upgrade"
 
 - name: install nix package
