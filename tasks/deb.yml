@@ -1,6 +1,7 @@
 ---
 # install debian packages
 - name: update apt cache
+  become: yes
   apt:
     update_cache: yes
   ignore_errors: "{{ ignore_errors | default('yes') }}"
@@ -8,6 +9,7 @@
     - update_cache
 
 - name: upgrade deb packages
+  become: yes
   apt:
     upgrade: dist
   ignore_errors: "{{ ignore_errors | default('yes') }}"
