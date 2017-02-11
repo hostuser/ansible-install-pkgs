@@ -1,5 +1,12 @@
 ---
-# install rpm packages
+# yum doesn't have a meaningful update_cache mechanism, as far as I can see
+- name: upgrade all rpm packages
+  become: yes
+  yum:
+    name: '*'
+    state: latest
+  tags:
+    - upgrade
 
 - name: install rpm package
   become: yes
@@ -7,3 +14,5 @@
   with_items:
     - "{{ pkgs['rpm'] | default(pkgs['default']) }}"
   ignore_errors: "{{ ignore_errors | default('yes') }}"
+  tags:
+    - install

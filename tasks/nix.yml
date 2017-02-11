@@ -1,8 +1,22 @@
 ---
-# install nix packages
+
+- name: update nix package cache
+  become: no
+  nix: update_cache = "{{ update_cache }}"
+  tags:
+    - update_cache
+
+- name: upgrade nix packages
+  become: no
+  nix: upgrade = "{{ upgrade }}"
+  tags:
+    - upgrade
+
 - name: install nix package
   become: no
   nix: name="{{ item }}" state="{{ pkg_state }}"
   with_items:
     - "{{ pkgs['nix'] | default(pkgs['default']) }}"
   ignore_errors: "{{ ignore_errors | default('yes') }}"
+  tags:
+    - install
