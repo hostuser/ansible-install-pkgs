@@ -83,7 +83,7 @@ def main():
         argument_spec=dict(
             name=dict(aliases=['pkg', 'package']),
             upgrade = dict(default=False, type='bool'),
-            update_cache = dict(default=False, aliases=['update-cache'], type='bool')
+            update_cache = dict(default=False, aliases=['update-cache'], type='bool'),
             state=dict(default='present', choices=['present', 'installed', 'absent', 'removed'])),
         required_one_of=[['name', 'upgrade', 'update_cache']],
         mutually_exclusive=[['name', 'upgrade']],
