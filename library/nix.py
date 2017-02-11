@@ -109,7 +109,11 @@ def main():
     if p['name']:
         pkgs = p['name'].split(',')
 
-        if p['update_cache']
+        if p['update_cache']:
+            update_cache()
+
+        if p['upgrade']:
+            upgrade_packages()
 
         if p['state'] == 'present':
             install_packages(module, pkgs)
