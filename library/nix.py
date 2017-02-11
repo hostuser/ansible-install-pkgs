@@ -17,7 +17,7 @@ import os
 from ansible.module_utils.basic import *
 
 
-NIX_PATH = os.path.join(os.environ['HOME'], "/.nix-profile/bin")
+NIX_PATH = os.path.join(os.environ['HOME'], ".nix-profile/bin")
 NIX_ENV_PATH = os.path.join(NIX_PATH, "nix-env")
 NIX_CHANNEL_PATH = os.path.join(NIX_PATH, "nix-channel")
 
