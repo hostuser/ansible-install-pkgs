@@ -31,7 +31,7 @@ def query_package(module, name, state="present"):
 
         return False
 
-def update_cache():
+def update_cache(module):
 
     cmd = "{} --update".format(NIX_CHANNEL_PATH)
     rc, stdout, stderr = module.run_command(cmd, check_rc=False)
@@ -40,7 +40,7 @@ def update_cache():
 
     module.exit_json(changed=True, msg="Updated nix cache.")
 
-def upgrade_packages():
+def upgrade_packages(module):
 
     cmd = "{} --upgrade".format(NIX_ENV_PATH)
     rc, stdout, stderr = module.run_command(cmd, check_rc=False)
@@ -101,19 +101,13 @@ def main():
         p['state'] = 'absent'
 
     if p['update_cache']:
-        update_cache()
+        update_cache(module)
 
     if p['upgrade']:
-        upgrade_packages()
+        upgrade_packages(module)
 
     if p['name']:
         pkgs = p['name'].split(',')
-
-        if p['update_cache']:
-            update_cache()
-
-        if p['upgrade']:
-            upgrade_packages()
 
         if p['state'] == 'present':
             install_packages(module, pkgs)
