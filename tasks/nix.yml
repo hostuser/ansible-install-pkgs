@@ -3,14 +3,12 @@
 - name: update nix package cache
   become: no
   nix: update_cache = "{{ update_cache }}"
-  tags:
-    - update_cache
+  when: install_action == "update_cache"
 
 - name: upgrade nix packages
   become: no
   nix: upgrade = "{{ upgrade }}"
-  tags:
-    - upgrade
+  when: install_action == "upgrade"
 
 - name: install nix package
   become: no
@@ -18,5 +16,4 @@
   with_items:
     - "{{ pkgs['nix'] | default(pkgs['default']) }}"
   ignore_errors: "{{ ignore_errors | default('yes') }}"
-  tags:
-    - install
+  when: install_action == "install"

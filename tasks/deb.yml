@@ -5,16 +5,15 @@
   apt:
     update_cache: yes
   ignore_errors: "{{ ignore_errors | default('yes') }}"
-  tags:
-    - update_cache
+  when: install_action == "update_cache"
+
 
 - name: upgrade deb packages
   become: yes
   apt:
     upgrade: dist
   ignore_errors: "{{ ignore_errors | default('yes') }}"
-  tags:
-    - upgrade
+  when: install_action == "upgrade"
 
 - name: install deb package
   become: yes
@@ -22,5 +21,4 @@
   with_items:
     - "{{ pkgs['deb'] | default(pkgs['default']) }}"
   ignore_errors: "{{ ignore_errors | default('yes') }}"
-  tags:
-    - install
+  when: install_action == "install"

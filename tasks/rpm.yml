@@ -5,8 +5,7 @@
   yum:
     name: '*'
     state: latest
-  tags:
-    - upgrade
+  when: install_action == "upgrade"
 
 - name: install rpm package
   become: yes
@@ -14,5 +13,4 @@
   with_items:
     - "{{ pkgs['rpm'] | default(pkgs['default']) }}"
   ignore_errors: "{{ ignore_errors | default('yes') }}"
-  tags:
-    - install
+  when: install_action == "install"
