@@ -9,7 +9,7 @@
 
 - name: install rpm package
   become: yes
-  yum: name="{{ item }}" state="{{ pkg_state }}"
+  yum: name="{{ item }}" state="{{ pkg_state | default(latest) }}"
   with_items:
     - "{{ pkgs['rpm'] | default(pkgs['default']) }}"
   ignore_errors: "{{ ignore_errors | default('yes') }}"
