@@ -12,7 +12,7 @@
 
 - name: install nix package
   become: no
-  nix: name="{{ item }}" state="{{ pkg_state | default("present) }}"
+  nix: name="{{ item }}" state="{{ pkg_state | default("present") }}"
   with_items:
     - "{{ pkgs['nix'] | default(pkgs['default']) }}"
   ignore_errors: "{{ ignore_errors | default('yes') }}"
