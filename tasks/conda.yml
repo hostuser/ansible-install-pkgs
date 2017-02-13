@@ -2,7 +2,7 @@
 
 - name: upgrade conda packages
   become: no
-  conda: upgrade=yes environment="{{ conda_env }}" channels="{{ conda_chan }}"
+  conda: upgrade=yes environment="{{ conda_env }}" channels="{{ conda_channels }}"
   when: install_action == "upgrade"
 
 - name: install conda package
