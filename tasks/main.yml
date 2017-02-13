@@ -22,3 +22,6 @@
 
 - include: conda.yml
   when: pkg_mgr is defined and pkg_mgr == 'conda'
+
+- include: pip.yml
+  when: pkg_mgr is defined and pkg_mgr == 'pip'
