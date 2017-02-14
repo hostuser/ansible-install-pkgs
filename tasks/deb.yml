@@ -7,7 +7,6 @@
   ignore_errors: "{{ ignore_errors | default('yes') }}"
   when: install_action == "update_cache"
 
-
 - name: upgrade deb packages
   become: yes
   apt:
